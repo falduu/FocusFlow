@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FocusFlow - Timer Pomodoro e gestionale task per studiare meglio">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>FocusFlow - Pomodoro Timer</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎯 FocusFlow</h1>
+            <button id="themeToggle" class="theme-toggle" aria-label="Cambia tema">🌙</button>
+        </header>
+
+        <!-- Timer Section -->
+        <section class="timer-section">
+            <div class="timer-display" id="timerDisplay">25:00</div>
+
+            <div class="timer-modes">
+                <button class="mode-btn active" data-mode="pomodoro">Pomodoro</button>
+                <button class="mode-btn" data-mode="shortBreak">Pausa Breve</button>
+                <button class="mode-btn" data-mode="longBreak">Pausa Lunga</button>
+            </div>
+
+            <div class="timer-controls">
+                <button id="startBtn" class="control-btn start">▶️ Start</button>
+                <button id="pauseBtn" class="control-btn pause" disabled>⏸️ Pausa</button>
+                <button id="resetBtn" class="control-btn reset">🔄 Reset</button>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <span class="stat-value" id="sessionsToday">0</span>
+                <span class="stat-label">Sessioni oggi</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="tasksCompleted">0</span>
+                <span class="stat-label">Task completati</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="totalFocusTime">0m</span>
+                <span class="stat-label">Tempo totale</span>
+            </div>
+        </section>
+
+        <!-- Tasks Section -->
+        <section class="tasks-section">
+            <h2>📋 I tuoi task</h2>
+
+            <div class="task-input-wrapper">
+                <input type="text" id="taskInput" placeholder="Aggiungi un nuovo task..." autocomplete="off">
+                <button id="addTaskBtn" class="add-btn">➕</button>
+            </div>
+
+            <ul id="taskList" class="task-list">
+                <!-- I task verranno inseriti qui dinamicamente -->
+            </ul>
+
+            <p id="emptyState" class="empty-state">Nessun task aggiunto. Inizia a studiare! </p>
+        </section>
+    </div>
+
+    <!-- Audio per notifica -->
+    <audio id="alarmSound" preload="auto">
+        <source
+            src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZURE"
+            type="audio/wav">
+    </audio>
+
+    <!-- Script -->
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Register Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('SW registrato:', reg.scope))
+                    .catch(err => console.log('SW errore:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
