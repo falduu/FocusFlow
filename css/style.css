@@ -1,385 +1,87 @@
 /* =========================================
-   CSS VARIABLES & THEMING
+   CUSTOM TIMER STYLES
    ========================================= */
-:root {
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --accent: #6366f1;
-    --accent-hover: #4f46e5;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-    --border: #e2e8f0;
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --radius: 14px;
-    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-[data-theme="dark"] {
-    --bg-color: #0b1120;
-    --card-bg: #1e293b;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --border: #334155;
-    --shadow: 0 4px 12px -2px rgb(0 0 0 / 0.6);
-}
-
-/* =========================================
-   RESET & BASE
-   ========================================= */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-.logo-wrapper {
+.custom-timer {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-}
-
-.app-icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-}
-
-.header h1 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    margin: 0;
-}
-
-body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+    padding: 0.75rem;
     background: var(--bg-color);
-    color: var(--text-primary);
-    line-height: 1.6;
-    transition: background var(--transition), color var(--transition);
-    min-height: 100vh;
-    padding-bottom: 2rem;
+    border-radius: 12px;
+    border: 1px dashed var(--border);
 }
 
-.container {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 2rem 1.25rem;
-}
-
-/* =========================================
-   HEADER
-   ========================================= */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.header h1 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-}
-
-.theme-toggle {
-    background: var(--card-bg);
+.timer-input {
+    width: 60px;
+    padding: 0.5rem 0.75rem;
     border: 2px solid var(--border);
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    display: grid;
-    place-items: center;
-    transition: transform var(--transition), border-color var(--transition);
-}
-
-.theme-toggle:hover {
-    transform: scale(1.08);
-    border-color: var(--accent);
-}
-
-/* =========================================
-   TIMER SECTION
-   ========================================= */
-.timer-section {
-    background: var(--card-bg);
-    padding: 2rem 1.5rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    border-radius: 8px;
     text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.timer-display {
-    font-size: 4.5rem;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    /* Numeri a larghezza fissa */
-    margin-bottom: 1.5rem;
-    color: var(--accent);
-    line-height: 1;
-}
-
-.timer-modes {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.mode-btn {
-    background: transparent;
-    border: 2px solid var(--border);
-    color: var(--text-secondary);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all var(--transition);
-}
-
-.mode-btn.active,
-.mode-btn:hover:not(:disabled) {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
-}
-
-.timer-controls {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.control-btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: var(--radius);
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 0.95rem;
-    color: #fff;
-    transition: transform var(--transition), filter var(--transition), opacity var(--transition);
-}
-
-.control-btn.start {
-    background: var(--success);
-}
-
-.control-btn.pause {
-    background: var(--warning);
-}
-
-.control-btn.reset {
-    background: var(--danger);
-}
-
-.control-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.control-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-}
-
-/* =========================================
-   STATS SECTION
-   ========================================= */
-.stats-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.stat-card {
-    background: var(--card-bg);
-    padding: 1.25rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    text-align: center;
-    transition: transform var(--transition);
-}
-
-.stat-card:hover {
-    transform: translateY(-3px);
-}
-
-.stat-value {
-    display: block;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 0.25rem;
-}
-
-.stat-label {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* =========================================
-   TASKS SECTION
-   ========================================= */
-.tasks-section {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-}
-
-.tasks-section h2 {
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
-.task-input-wrapper {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-#taskInput {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
     font-size: 1rem;
-    background: var(--bg-color);
+    font-weight: 500;
+    background: var(--card-bg);
     color: var(--text-primary);
     transition: border-color var(--transition), box-shadow var(--transition);
+    /*-moz-appearance: textfield*/
+    ;
 }
 
-#taskInput:focus {
+.timer-input::-webkit-outer-spin-button,
+.timer-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.timer-input:focus {
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-.add-btn {
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    width: 46px;
-    cursor: pointer;
+.timer-input::placeholder {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.timer-separator {
+    font-weight: 600;
+    color: var(--text-secondary);
     font-size: 1.2rem;
-    transition: background var(--transition), transform var(--transition);
-    display: grid;
-    place-items: center;
+    margin: 0 -0.25rem;
 }
 
-.add-btn:hover {
-    background: var(--accent-hover);
-    transform: scale(1.05);
+/* Animazione pulse per feedback visivo */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
-.task-list {
-    list-style: none;
-    max-height: 300px;
-    overflow-y: auto;
-    padding-right: 0.25rem;
-}
-
-.task-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--border);
-    transition: background var(--transition);
-}
-
-.task-item:last-child {
-    border-bottom: none;
-}
-
-.task-item:hover {
-    background: var(--bg-color);
-    border-radius: 8px;
-}
-
-.task-checkbox {
-    width: 20px;
-    height: 20px;
-    accent-color: var(--accent);
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-.task-text {
-    flex: 1;
-    font-size: 0.95rem;
-    word-break: break-word;
-}
-
-.task-text.completed {
-    text-decoration: line-through;
-    color: var(--text-secondary);
-    opacity: 0.7;
-}
-
-.delete-btn {
-    background: transparent;
-    border: none;
-    color: var(--danger);
-    cursor: pointer;
-    font-size: 1.1rem;
-    padding: 0.25rem;
-    opacity: 0.5;
-    transition: opacity var(--transition), transform var(--transition);
-}
-
-.delete-btn:hover {
-    opacity: 1;
-    transform: scale(1.2);
-}
-
-.empty-state {
-    text-align: center;
-    color: var(--text-secondary);
-    margin-top: 1rem;
-    font-style: italic;
-    font-size: 0.9rem;
-}
-
-/* =========================================
-   RESPONSIVE
-   ========================================= */
+/* Responsive custom timer */
 @media (max-width: 500px) {
-    .container {
-        padding: 1.25rem 0.75rem;
+    .custom-timer {
+        gap: 0.75rem;
     }
 
-    .timer-display {
-        font-size: 3.5rem;
+    .timer-input {
+        width: 55px;
+        padding: 0.4rem 0.5rem;
+        font-size: 0.9rem;
     }
 
-    .timer-controls {
-        flex-direction: column;
-    }
-
-    .control-btn {
+    #setCustomBtn {
         width: 100%;
-    }
-
-    .stats-section {
-        grid-template-columns: 1fr;
+        margin-top: 0.5rem;
     }
 }
