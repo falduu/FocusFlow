@@ -37,6 +37,25 @@
     padding: 0;
 }
 
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.app-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
 body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     background: var(--bg-color);
